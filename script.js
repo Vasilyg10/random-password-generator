@@ -69,7 +69,7 @@ generateEl.addEventListener("click", function() {
     arr.splice(length, 693);
   };
 
-
+  // Call the randomize function
   shuffleArray(arr);
   console.log(arr);
 
@@ -79,7 +79,7 @@ generateEl.addEventListener("click", function() {
   // Place the newly created randomArr into the HTML textarea with id="password"
   document.getElementById("password").innerHTML = randomArr;
 
-  // If they hit cancel on all character choices give error message
+  // If they hit cancel on all character choices which ends up as an empty array give error message
   if (!randomArr) {
     alert("You have not selected anything, please try again.");
   }
