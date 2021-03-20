@@ -1,47 +1,87 @@
 // Assignment code here
-// On button click open prompt
-var writePassword = function() {
-  num = parseInt(prompt("How many characters do you want your password to be?", "Please choose a number between 8 and 128."), 10);
+var generateEl = document.getElementById("generate");
 
-  // If they don't enter a number between 1 and 128 give error and restart prompt
-  if (/^[0-9]+$/.test(num) && num >= 8 && num <= 128) {
-    alert("You have chosen your password to have " + num + " characters.");
-    return true;
-  } 
-  else {
-    alert("You did not pick a valid number. Please choose a number between 8 and 128.");
-    writePassword();
-  }
 
+// Click Event
+generateEl.addEventListener("click", function() {
   
+  var validLength = false;
+  
+  while (!validLength) {
+    var length = parseInt(prompt("How many characters do you want your password to be?", "Please choose a number between 8 and 128."), 10);
+    if (/^[0-9]+$/.test(length) && length >= 8 && length <= 128) {
+      validLength = true;
+      alert("You have chosen your password to have " + length + " characters.");
+    }
+    else {
+      alert("You did not pick a valid number. Please choose a number between 8 and 128.");
+    }
+  };
 
-
-  // choose how which characters
-  function generatePassword() {
-    var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        textVal = "";
-        for (var i = 0, n = charset.length; i < num; ++i) {
-          textVal += charset.charAt(Math.floor(Math.random() * n));
-        }
-        return textVal;
+  var hasLower = confirm("Do you want lowercase?");
+  if (hasLower) {
+    var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
   }
-  generatePassword() = passwordText;
-  console.log(textVal);
-};
+  else {
+    var lowerCase = "";
+  }
+    
+  var hasUpper = confirm("Do you want uppercase?");
+  if (hasUpper) {
+    var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  }
+  else {
+    var upperCase = "";
+  }
+    
+  var hasNumber = confirm("Do you want numbers?");
+  if (hasNumber) {
+    var number = "0123456789".split("");
+  }
+  else {
+    var number = "";
+  }
+    
+  var hasSymbol = confirm("Do you want symbols?");
+  if (hasSymbol) {
+    var symbol = "!@#$%^&*()+{}[]".split("");
+  }
+  else {
+    var symbol = "";
+  }
+    
+  console.log(length, hasLower, hasUpper, hasNumber, hasSymbol);
+
+  var availableCharacters = [];
+
+  var arr = availableCharacters.concat(upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, );
+  console.log(arr);  
+
+  var shuffleArray = function(array) {
+    array.sort(() => Math.random() - 0.5);
+    arr.splice(length, 693);
+  };
 
 
+  shuffleArray(arr);
+  console.log(arr);
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+  var randomArr = arr.join("");  
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  document.getElementById("password").innerHTML = randomArr;
+});
 
-  passwordText.value = password;
+// // Get references to the #generate element
+// var generateBtn = document.querySelector("#generate");
 
-}
+// // Write password to the #password input
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+//   passwordText.value = password;
+
+// };
+
+// // Add event listener to generate button
+// generateBtn.addEventListener("click", writePassword);
