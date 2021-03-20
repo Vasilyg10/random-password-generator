@@ -5,6 +5,7 @@ var generateEl = document.getElementById("generate");
 // Click Event
 generateEl.addEventListener("click", function() {
   
+  // Code to make sure they choose a length between 8 and 128
   var validLength = false;
   
   while (!validLength) {
@@ -18,11 +19,14 @@ generateEl.addEventListener("click", function() {
     }
   };
 
+  // Code to have them select which characters they want
   var hasLower = confirm("Do you want lowercase letters?");
   if (hasLower) {
+    // If they select ok create this string
     var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
   }
   else {
+    // If they select cancel create empty string
     var lowerCase = "";
   }
     
@@ -52,11 +56,14 @@ generateEl.addEventListener("click", function() {
     
   console.log(length, hasLower, hasUpper, hasNumber, hasSymbol);
 
+  // Create empty array to add all true variables into
   var availableCharacters = [];
 
+  // Add all true variables to the empty array
   var arr = availableCharacters.concat(upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, upperCase, lowerCase, number, symbol, );
   console.log(arr);  
 
+  // Randomize the order of the "arr" array
   var shuffleArray = function(array) {
     array.sort(() => Math.random() - 0.5);
     arr.splice(length, 693);
@@ -66,14 +73,19 @@ generateEl.addEventListener("click", function() {
   shuffleArray(arr);
   console.log(arr);
 
+  // Eliminate commas in the array to make just one long string
   var randomArr = arr.join("");
 
+  // Place the newly created randomArr into the HTML textarea with id="password"
   document.getElementById("password").innerHTML = randomArr;
 
+  // If they hit cancel on all character choices give error message
   if (!randomArr) {
     alert("You have not selected anything, please try again.");
   }
 });
+
+// The below code was initially confusing to me so I just started from scratch
 
 // // Get references to the #generate element
 // var generateBtn = document.querySelector("#generate");
