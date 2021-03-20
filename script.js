@@ -18,7 +18,7 @@ generateEl.addEventListener("click", function() {
     }
   };
 
-  var hasLower = confirm("Do you want lowercase?");
+  var hasLower = confirm("Do you want lowercase letters?");
   if (hasLower) {
     var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
   }
@@ -26,7 +26,7 @@ generateEl.addEventListener("click", function() {
     var lowerCase = "";
   }
     
-  var hasUpper = confirm("Do you want uppercase?");
+  var hasUpper = confirm("Do you want uppercase letters?");
   if (hasUpper) {
     var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   }
@@ -66,9 +66,13 @@ generateEl.addEventListener("click", function() {
   shuffleArray(arr);
   console.log(arr);
 
-  var randomArr = arr.join("");  
+  var randomArr = arr.join("");
 
   document.getElementById("password").innerHTML = randomArr;
+
+  if (!randomArr) {
+    alert("You have not selected anything.");
+  }
 });
 
 // // Get references to the #generate element
