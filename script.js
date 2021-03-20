@@ -71,7 +71,7 @@ generateEl.addEventListener("click", function() {
   document.getElementById("password").innerHTML = randomArr;
 
   if (!randomArr) {
-    alert("You have not selected anything.");
+    alert("You have not selected anything, please try again.");
   }
 });
 
